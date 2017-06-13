@@ -70,12 +70,12 @@ Eric	Ephram	2016-03-31
 Howard	Hess	2016-02-28
 Frank	Fountain	2016-01-31
 
-mysql> Explain assignment;
+mysql> explain assignment;
 +----------------+------------------+------+-----+---------+----------------+
 | Field          | Type             | Null | Key | Default | Extra          |
 +----------------+------------------+------+-----+---------+----------------+
 | assignment_id  | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
-| student_id     | int(11) unsigned | NO   |     | NULL    |                |
+| student_id     | int(11) unsigned | NO   | MUL | NULL    |                |
 | assignment_nbr | int(11)          | NO   |     | NULL    |                |
 | class_id       | int(11) unsigned | NO   |     | NULL    |                |
 | grade_id       | int(11) unsigned | YES  | MUL | NULL    |                |
@@ -89,60 +89,28 @@ mysql> select * from assignment;
 |             1 |          1 |              1 |        1 |        1 |
 |             2 |          2 |              1 |        1 |        2 |
 |             3 |          3 |              1 |        1 |        5 |
-|             4 |          4 |              1 |        1 |       17 |
-|             5 |          5 |              1 |        1 |        8 |
-|             6 |          6 |              1 |        1 |        4 |
-|             7 |          7 |              1 |        1 |        7 |
-|             8 |          8 |              1 |        1 |        3 |
-|             9 |          9 |              1 |        1 |        6 |
-|            10 |         10 |              1 |        1 |       15 |
-|            11 |          1 |              2 |        1 |       11 |
-|            12 |          2 |              2 |        1 |       16 |
-|            13 |          3 |              2 |        1 |       20 |
-|            14 |          4 |              2 |        1 |       19 |
-|            15 |          5 |              2 |        1 |       12 |
-|            16 |          6 |              2 |        1 |        9 |
-|            17 |          7 |              2 |        1 |       13 |
-|            18 |          8 |              2 |        1 |       10 |
-|            19 |          9 |              2 |        1 |       14 |
-|            20 |         10 |              2 |        1 |       18 |
+|             4 |          4 |              1 |        1 |        3 |
+|             5 |          5 |              1 |        1 |        4 |
 +---------------+------------+----------------+----------+----------+
-20 rows in set (0.00 sec)
+5 rows in set (0.00 sec)
 
-mysql> Explain grade;
-+---------------+------------------+------+-----+---------+----------------+
-| Field         | Type             | Null | Key | Default | Extra          |
-+---------------+------------------+------+-----+---------+----------------+
-| grade_id      | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
-| grade_values  | varchar(30)      | YES  |     | NULL    |                |
-| student_id    | int(11) unsigned | NO   |     | NULL    |                |
-| assignment_id | int(11) unsigned | NO   | MUL | NULL    |                |
-+---------------+------------------+------+-----+---------+----------------+
-4 rows in set (0.01 sec)
+mysql> explain grade;
++--------------+------------------+------+-----+---------+----------------+
+| Field        | Type             | Null | Key | Default | Extra          |
++--------------+------------------+------+-----+---------+----------------+
+| grade_id     | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
+| grade_values | varchar(30)      | YES  |     | NULL    |                |
++--------------+------------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
 
 mysql> select * from grade;
-+----------+-----------------------------+------------+---------------+
-| grade_id | grade_values                | student_id | assignment_id |
-+----------+-----------------------------+------------+---------------+
-|        1 | Complete and unsatisfactory |          1 |             1 |
-|        2 | Exceeds Expectations        |          2 |             2 |
-|        3 | Exceeds Expectations        |          8 |             8 |
-|        4 | Not graded                  |          6 |             6 |
-|        5 | Complete and Satisfactory   |          3 |             3 |
-|        6 | Complete and Satisfactory   |          9 |             9 |
-|        7 | Complete and unsatisfactory |          7 |             7 |
-|        8 | Complete and Satisfactory   |          5 |             5 |
-|        9 | Incomplete                  |          6 |            16 |
-|       10 | Complete and Satisfactory   |          8 |            18 |
-|       11 | Complete and unsatisfactory |          1 |            11 |
-|       12 | Complete and Satisfactory   |          5 |            15 |
-|       13 | Complete and Satisfactory   |          7 |            17 |
-|       14 | Complete and Satisfactory   |          9 |            19 |
-|       15 | Complete and unsatisfactory |         10 |            10 |
-|       16 | Complete and Satisfactory   |          2 |            12 |
-|       17 | Exceeds Expectations        |          4 |             4 |
-|       18 | Complete and Satisfactory   |         10 |            20 |
-|       19 | Incomplete                  |          4 |            14 |
-|       20 | Exceeds Expectations        |          3 |            13 |
-+----------+-----------------------------+------------+---------------+
-20 rows in set (0.00 sec)
++----------+-----------------------------+
+| grade_id | grade_values                |
++----------+-----------------------------+
+|        1 | Complete and unsatisfactory |
+|        2 | Exceeds Expectations        |
+|        3 | Complete and Satisfactory   |
+|        4 | Not graded                  |
+|        5 | Incomplete                  |
++----------+-----------------------------+
+5 rows in set (0.00 sec)
