@@ -1,3 +1,5 @@
+```sql
+
 ITEM 1.
 SELECT first_name, last_name
 FROM student
@@ -114,3 +116,5 @@ mysql> select * from grade;
 |        5 | Incomplete                  |
 +----------+-----------------------------+
 5 rows in set (0.00 sec)
+
+'''
